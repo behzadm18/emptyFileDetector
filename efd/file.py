@@ -12,7 +12,7 @@ import os
 import warnings
 
 
-class File(object):
+class File():
     """This class represents the files which are checked for being empty.
 
     :ivar address: address of the file, str
@@ -36,7 +36,7 @@ class File(object):
         :return: True if the file is empty"""
         return os.path.getsize(self.address) == 0
 
-    def fill(self, text: str=None) -> None:
+    def fill(self, text: str = None) -> None:
         """File the empty file with given string or default value
 
         :param text: the string to be written to the file. If not given, it
@@ -49,10 +49,10 @@ class File(object):
             return
         if text is None:
             # commenting characters for some known files
-            commentingChars = {'ini': ';', 'c': '//', 'm': '%',
-                               'py': '#', 'java': '//'}
-            splittedFileAddress = self.address.split('.')
+            commenting_chars = {'ini': ';', 'c': '//', 'm': '%',
+                                'py': '#', 'java': '//'}
+            split_file_address = self.address.split('.')
             # if the file type is not known, write " " to file
-            text = commentingChars.get(splittedFileAddress[-1].lower(), '" "')
+            text = commenting_chars.get(split_file_address[-1].lower(), '" "')
         with open(self.address, 'w') as file:
             file.write(text)

@@ -11,7 +11,7 @@ FOLDERADDRESS = r'/folder_test'
 
 
 @pytest.fixture
-def fake_file_system(fs):
+def fake_file_system(fs):  # pylint: disable=invalid-name
     """Create fake file system
 
     It has a folder structure with some empty files here and there.

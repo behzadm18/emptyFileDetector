@@ -14,7 +14,7 @@ import os
 from typing import Set
 
 
-class Folder(object):
+class Folder():
     """This class represents the folder containing the file to be checked by
     :meth: `efd.File.isempty` recursively.
 
@@ -34,7 +34,3 @@ class Folder(object):
             for file in files:
                 file_set.add(os.path.join(root, file))
         return file_set
-
-
-# folder = Folder(r"C:\Program Files\7-Zip")
-# print(folder.all_files())

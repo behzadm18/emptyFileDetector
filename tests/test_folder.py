@@ -13,19 +13,23 @@ from efd.folder import Folder
 from tests.conftest import FOLDERADDRESS
 
 
+# pylint: disable= unused-argument
 def test_folder_has_address(fake_file_system):
     """Test if the Folder object has address"""
     testfolder = Folder(FOLDERADDRESS)
     assert FOLDERADDRESS == testfolder.address
 
 
+# pylint: disable= unused-argument
 def test_folder_does_not_exist(fake_file_system):
     """Test if non-existing folder raises exception"""
     with pytest.raises(FileNotFoundError):
         Folder(r'c:\some\arbitraryAddress')
 
 
+# pylint: disable= unused-argument
 def test_files_are_found_in_the_folder(fake_file_system):
+    """Test all files are founs recursively in the folder"""
     testfolder = Folder(FOLDERADDRESS)
     expected_set = {'\\folder_test\\.folder11\\empty file written to 12',
                     '\\folder_test\\.folder11\\filewithnewline13',
