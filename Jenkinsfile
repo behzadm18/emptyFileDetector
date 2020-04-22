@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('Set up virtualenv') {
             steps {
-				withPythonEnv('/usr/bin/python3')
-				sh 'pip install -r requirements.txt'
+				withPythonEnv('/usr/bin/python3'){
+				sh 'pip3 install -r requirements.txt'
+				}
             }
             post {
                 success {
@@ -12,20 +13,26 @@ pipeline {
                 }
             }
         }
+
         stage('Run unit tests'){
             steps{
-                sh 'python -m pytest tests'
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {    
+                    sh 'python3 -m pytest tests'
+                }
             }
-            
         }
+
+        
         stage('Run pylint'){
             steps{
-                sh 'python -m pylint efd'
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    sh 'python3 -m pylint efd'
+                }
             }
         }
 		stage('Run mypy'){
             steps{
-                echo "NOT DONE YET"
+                sh '/var/lib/jenkins/.local/bin/mypy efd'
             }
         }
     }
