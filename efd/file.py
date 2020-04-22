@@ -10,6 +10,7 @@ __author__ = "Behzad"
 
 import os
 import warnings
+from typing import Optional, cast
 
 
 class File():
@@ -36,7 +37,7 @@ class File():
         :return: True if the file is empty"""
         return os.path.getsize(self.address) == 0
 
-    def fill(self, text: str = None) -> None:
+    def fill(self, text: str = "") -> None:
         """File the empty file with given string or default value
 
         :param text: the string to be written to the file. If not given, it
@@ -47,7 +48,7 @@ class File():
             warnings.warn(f'''The file "{self.address}": is not empty and
             is left untouched.''')
             return
-        if text is None:
+        if text is "":
             # commenting characters for some known files
             commenting_chars = {'ini': ';', 'c': '//', 'm': '%',
                                 'py': '#', 'java': '//'}
