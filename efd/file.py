@@ -10,7 +10,6 @@ __author__ = "Behzad"
 
 import os
 import warnings
-from typing import Optional, cast
 
 
 class File():
@@ -48,7 +47,7 @@ class File():
             warnings.warn(f'''The file "{self.address}": is not empty and
             is left untouched.''')
             return
-        if text is "":
+        if text == "":
             # commenting characters for some known files
             commenting_chars = {'ini': ';', 'c': '//', 'm': '%',
                                 'py': '#', 'java': '//'}
