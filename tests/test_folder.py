@@ -7,6 +7,7 @@ fake_file_system is the fixture defined in :mod:`tests:conftest`
 __author__ = "Behzad"
 
 
+import os
 import pytest
 
 from efd.folder import Folder
@@ -42,5 +43,7 @@ def test_files_are_found_in_the_folder(fake_file_system):
                     '\\folder_test\\folder10\\.emptyfile11.C',
                     '\\folder_test\\emptyfile03.m',
                     '\\folder_test\\folder10\\.emptyfile12.Java'}
+    if os.name == 'posix':
+        expected_set = {path.replace('\\', '/') for path in expected_set}
     file_set = testfolder.all_files()
     assert expected_set == file_set
