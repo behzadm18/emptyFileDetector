@@ -38,7 +38,7 @@ def test_file_has_address(fake_file_system):
 
 def test_if_empty_file_is_detected(fake_file_system):
     # pylint: disable= unused-argument, missing-function-docstring
-    file_address = FOLDERADDRESS + r'/emptyfile01.ini'
+    file_address = FOLDERADDRESS + r'/emptyfile01.INI'
     testfile = File(file_address)
     assert testfile.isempty()
 
